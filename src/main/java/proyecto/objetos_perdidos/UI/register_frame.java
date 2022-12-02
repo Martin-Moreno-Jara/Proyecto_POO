@@ -88,7 +88,19 @@ public class register_frame extends javax.swing.JFrame {
 
         jLabel8.setText("Documento");
 
+        txt_documento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_documentoKeyTyped(evt);
+            }
+        });
+
         jLabel5.setText("Número");
+
+        txt_numero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_numeroKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -239,6 +251,18 @@ public class register_frame extends javax.swing.JFrame {
         login.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_cancelarActionPerformed
+
+    private void txt_numeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_numeroKeyTyped
+        if(txt_numero.getText().length() >=10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_numeroKeyTyped
+
+    private void txt_documentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_documentoKeyTyped
+        if(txt_documento.getText().length() >=10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_documentoKeyTyped
 
     /**
      * @param args the command line arguments

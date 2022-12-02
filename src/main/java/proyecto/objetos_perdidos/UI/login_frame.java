@@ -56,14 +56,11 @@ public class login_frame extends javax.swing.JFrame {
 
         jLabel4.setText("Contraseña");
 
-        txt_correo_login.setText("jTextField1");
         txt_correo_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_correo_loginActionPerformed(evt);
             }
         });
-
-        txt_pass_login.setText("jPasswordField1");
 
         jLabel5.setText("¿No estás registrado?");
 

@@ -147,17 +147,11 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txt_correo_login">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField1"/>
-              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_correo_loginActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JPasswordField" name="txt_pass_login">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
