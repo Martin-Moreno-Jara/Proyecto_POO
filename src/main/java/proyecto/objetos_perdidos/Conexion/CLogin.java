@@ -17,7 +17,7 @@ public class CLogin {
     public boolean cerrar_ventana(){
         return c_ventana;
     }
-    
+
     public void validar_usuario(JTextField correo,JPasswordField contrasena){
         try{
             ResultSet rs =null;           
