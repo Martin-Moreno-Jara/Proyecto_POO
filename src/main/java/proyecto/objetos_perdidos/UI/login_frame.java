@@ -5,7 +5,7 @@
 package proyecto.objetos_perdidos.UI;
 
 import proyecto.objetos_perdidos.Conexion.CLogin;
-import proyecto.objetos_perdidos.Conexion.Conexion;
+import proyecto.objetos_perdidos.Conexion.CConexion;
 
 /**
  *
@@ -19,7 +19,7 @@ public class login_frame extends javax.swing.JFrame {
     public login_frame() {
         initComponents();
         setLocationRelativeTo(null);
-        Conexion conexion = new Conexion();
+        CConexion conexion = new CConexion();
         conexion.establecer_conexion();
     }
 

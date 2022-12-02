@@ -5,6 +5,7 @@
 package proyecto.objetos_perdidos.UI;
 
 import javax.swing.JOptionPane;
+import proyecto.objetos_perdidos.Conexion.CRegistro;
 import proyecto.objetos_perdidos.Data.Usuario;
 
 /**
@@ -61,14 +62,11 @@ public class register_frame extends javax.swing.JFrame {
 
         jLabel4.setText("Contraseña");
 
-        txt_nombre.setText("jTextField1");
         txt_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_nombreActionPerformed(evt);
             }
         });
-
-        pass.setText("jPasswordField1");
 
         btn_registrar.setText("Registrar");
         btn_registrar.addActionListener(new java.awt.event.ActionListener() {
@@ -86,19 +84,11 @@ public class register_frame extends javax.swing.JFrame {
 
         jLabel6.setText("Nombre");
 
-        txt_apellido.setText("jTextField2");
-
         jLabel7.setText("Apellidos");
-
-        txt_correo.setText("jTextField3");
 
         jLabel8.setText("Documento");
 
-        txt_documento.setText("jTextField4");
-
         jLabel5.setText("Número");
-
-        txt_numero.setText("jTextField1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -107,39 +97,33 @@ public class register_frame extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel6))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(txt_correo))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_apellido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_nombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(15, 15, 15)
-                        .addComponent(txt_documento))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(34, 34, 34)
-                        .addComponent(txt_numero))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(pass))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_nombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txt_apellido)
+                            .addComponent(txt_correo)
+                            .addComponent(txt_numero, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel2)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(btn_cancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btn_registrar)))
+                                .addComponent(btn_registrar))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_documento, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -185,9 +169,9 @@ public class register_frame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(203, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94))
+                .addGap(145, 145, 145))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,10 +209,22 @@ public class register_frame extends javax.swing.JFrame {
             nuevo_usuario.setNumero(txt_numero.getText());
             nuevo_usuario.setDocumento(txt_documento.getText());
             nuevo_usuario.setContrasena(pass.toString());
-            JOptionPane.showMessageDialog(null, nuevo_usuario);
-            login_frame login = new login_frame();
-            login.setVisible(true);
-            this.dispose();
+            
+            CRegistro registro = new CRegistro();
+            registro.registrar_usuario(txt_nombre, txt_apellido, txt_correo, txt_numero, txt_documento, pass);
+            
+            // JOptionPane.showMessageDialog(null, nuevo_usuario);
+            // login_frame login = new login_frame();
+            //login.setVisible(true);
+            //this.dispose();
+            if(registro.cerrar_ventana()){
+                login_frame login = new login_frame();
+                login.setVisible(true);
+                this.dispose();
+            }
+            
+    
+           
         }
         else{
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos para registrarse");

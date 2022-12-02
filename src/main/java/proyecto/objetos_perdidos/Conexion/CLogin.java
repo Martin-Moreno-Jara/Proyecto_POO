@@ -23,9 +23,9 @@ public class CLogin {
             ResultSet rs =null;           
             PreparedStatement ps =null;
             
-            Conexion conexion = new Conexion();
+            CConexion conexion = new CConexion();
             
-            String consulta ="select * from usuarios where usuarios.correo = (?) and usuarios.contrasena = (?)";
+            String consulta ="select * from usuarios where usuarios.correo = (?) and usuarios.password = (?)";
             ps=conexion.establecer_conexion().prepareStatement(consulta);
             
             String contra = String.valueOf(contrasena.getPassword());

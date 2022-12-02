@@ -6,12 +6,12 @@ import java.sql.DriverManager;
 import javax.swing.JOptionPane;
 
 
-public class Conexion {
+public class CConexion {
     Connection conectar;
     
     String usuario="root";
     String contrasena="rraxxerr420";
-    String bd="login";
+    String bd="objetos_perdidos";
     String ip="localhost";
     String puerto="3306";
     
@@ -22,7 +22,7 @@ public class Conexion {
             
             Class.forName("com.mysql.jdbc.Driver");
             conectar = DriverManager.getConnection(cadena, usuario, contrasena);
-                       // JOptionPane.showMessageDialog(null,"se conectó a la base de datos");
+                    //JOptionPane.showMessageDialog(null,"se conectó a la base de datos");
 
             
         }catch(Exception e){
