@@ -86,6 +86,11 @@ public class main_frame extends javax.swing.JFrame {
         lb_nombre_usuario.setText("jLabel4");
 
         btn_agg_obj.setText("Agregar objeto perdido");
+        btn_agg_obj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agg_objActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -180,6 +185,11 @@ public class main_frame extends javax.swing.JFrame {
        login.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_btn_logoutActionPerformed
+
+    private void btn_agg_objActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agg_objActionPerformed
+        agregar_objeto objeto = new agregar_objeto(this,true);
+        objeto.setVisible(true);
+    }//GEN-LAST:event_btn_agg_objActionPerformed
 
     /**
      * @param args the command line arguments

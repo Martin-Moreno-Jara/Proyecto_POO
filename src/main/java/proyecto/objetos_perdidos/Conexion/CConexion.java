@@ -10,10 +10,12 @@ public class CConexion {
     Connection conectar;
     
     String usuario="root";
-    String contrasena="";
+    String contrasena="rraxxerr420";
+    //"raxxerr420"
     String bd="objetos_perdidos";
     String ip="localhost";
-    String puerto="3307";
+    String puerto="3306";
+    //"3306"
     
     String cadena = "jdbc:mysql://"+ip+":"+puerto+"/"+bd;
     
