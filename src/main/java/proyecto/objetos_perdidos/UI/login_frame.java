@@ -191,7 +191,9 @@ public class login_frame extends javax.swing.JFrame {
         return nombre_confirmacion;
 }
     private void btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresarActionPerformed
-        CLogin login = new CLogin(buscar_nombre());
+        String texto_correo = txt_correo_login.getText();
+        CLogin login = new CLogin(buscar_nombre(),texto_correo);
+        System.out.println(texto_correo);
         login.validar_usuario(txt_correo_login, txt_pass_login);
         /*usuario_logeado.setCorreo(txt_correo_login.getText());
         try{

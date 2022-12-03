@@ -50,9 +50,30 @@ public class CRegistro {
         catch(Exception e ){
             JOptionPane.showMessageDialog(null,"No se ha podido crear usuario : "+e.toString() );
         }
-        
        
+    }
+    public void registrar_objeto(String tipo,String obj,String ubicacion,String descripcion,String correo){
+        try{
+            
+        CConexion conexion = new CConexion();
+       
+       Statement consulta = conexion.establecer_conexion().createStatement();
+       consulta.executeUpdate("Insert into objetos (tipo, objeto, ubicacion, descripcion, encontradopor) values ('"
+               +tipo
+               +"','"
+               +obj
+               +"','"
+               +ubicacion
+               +"','"
+               + descripcion
+               +"','"
+               + correo+ "')");
+        cerrar = true;
+        conexion.establecer_conexion().close();
         
-        
+        }
+        catch(Exception e ){
+            JOptionPane.showMessageDialog(null,"No se ha podido crear usuario : "+e.toString() );
+        }
     }
 }

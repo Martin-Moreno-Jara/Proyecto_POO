@@ -7,6 +7,8 @@ package proyecto.objetos_perdidos.UI;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import proyecto.objetos_perdidos.Conexion.CRegistro;
 
 /**
  *
@@ -17,10 +19,12 @@ public class agregar_objeto extends javax.swing.JDialog {
     /**
      * Creates new form agregar_objeto
      */
-    public agregar_objeto(java.awt.Frame parent, boolean modal) {
+    String correo_usuario;
+    public agregar_objeto(java.awt.Frame parent, boolean modal,String c) {
         super(parent, modal);
         setLocationRelativeTo(null);
         initComponents();
+        this.correo_usuario=c;
     }
     
     public String[] datos(String dat){
@@ -73,13 +77,14 @@ public class agregar_objeto extends javax.swing.JDialog {
         cb_objeto = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txt_descripcion = new javax.swing.JTextArea();
         btn = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_ubicación = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Agregar objeto perdido");
 
         jLabel1.setText("Agregar objeto");
 
@@ -102,9 +107,9 @@ public class agregar_objeto extends javax.swing.JDialog {
 
         jLabel4.setText("Descripción");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txt_descripcion.setColumns(20);
+        txt_descripcion.setRows(5);
+        jScrollPane1.setViewportView(txt_descripcion);
 
         btn.setText("Guardar");
         btn.addActionListener(new java.awt.event.ActionListener() {
@@ -122,9 +127,9 @@ public class agregar_objeto extends javax.swing.JDialog {
 
         jLabel5.setText("Encontrado en");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txt_ubicación.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txt_ubicaciónActionPerformed(evt);
             }
         });
 
@@ -136,30 +141,30 @@ public class agregar_objeto extends javax.swing.JDialog {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_cancelar))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(cb_objeto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cb_tipo_objeto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(btn)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_cancelar))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE))))
+                            .addComponent(txt_ubicación)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cb_objeto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cb_tipo_objeto, 0, 156, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -178,7 +183,7 @@ public class agregar_objeto extends javax.swing.JDialog {
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_ubicación, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -201,9 +206,9 @@ public class agregar_objeto extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_objetoActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txt_ubicaciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ubicaciónActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txt_ubicaciónActionPerformed
 
     private void cb_tipo_objetoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_tipo_objetoItemStateChanged
         if(evt.getStateChange()== ItemEvent.SELECTED){
@@ -214,7 +219,19 @@ public class agregar_objeto extends javax.swing.JDialog {
     }//GEN-LAST:event_cb_tipo_objetoItemStateChanged
 
     private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
-
+        if(txt_ubicación.getText().equals("") && txt_descripcion.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Debe llenar todos los campos para hacer el registro");
+        }
+        else{
+            String tipo_obj = cb_tipo_objeto.getSelectedItem().toString();
+            String obj = cb_objeto.getSelectedItem().toString();
+            String ubicacion = txt_ubicación.getText();
+            String descripcion = txt_descripcion.getText();
+            
+            CRegistro registro_objeto = new CRegistro();
+            registro_objeto.registrar_objeto(tipo_obj, obj, ubicacion, descripcion, correo_usuario);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnActionPerformed
 
     /**
@@ -245,7 +262,7 @@ public class agregar_objeto extends javax.swing.JDialog {
         //</editor-fold>
 
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+       /* java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 agregar_objeto dialog = new agregar_objeto(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -257,6 +274,7 @@ public class agregar_objeto extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
+*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -270,7 +288,7 @@ public class agregar_objeto extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextArea txt_descripcion;
+    private javax.swing.JTextField txt_ubicación;
     // End of variables declaration//GEN-END:variables
 }

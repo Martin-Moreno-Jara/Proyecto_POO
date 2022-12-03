@@ -6,11 +6,12 @@ package proyecto.objetos_perdidos.UI;
 
 public class main_frame extends javax.swing.JFrame {
     String nombre_label;
-    public main_frame(String n) {
+    String correo_referencia;
+    public main_frame(String n, String c) {
         initComponents();
         setLocationRelativeTo(null);
-        System.out.println(n);
         lb_nombre_usuario.setText(n);
+        this.correo_referencia=c;
     }
     
     @SuppressWarnings("unchecked")
@@ -169,7 +170,7 @@ public class main_frame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_logoutActionPerformed
 
     private void btn_agg_objActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agg_objActionPerformed
-        agregar_objeto objeto = new agregar_objeto(this, true);
+        agregar_objeto objeto = new agregar_objeto(this, true,correo_referencia);
         objeto.setVisible(true);
     }//GEN-LAST:event_btn_agg_objActionPerformed
 

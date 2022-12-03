@@ -13,8 +13,10 @@ import proyecto.objetos_perdidos.UI.main_frame;
 
 public class CLogin {
     String nombre;
-    public CLogin(String n){
+    String correo_usuario;
+    public CLogin(String n,String c){
         this.nombre = n;
+        this.correo_usuario = c;
     }
     boolean c_ventana = false;
     
@@ -44,7 +46,7 @@ public class CLogin {
             if(rs.next()){
                 JOptionPane.showMessageDialog(null, "El usuario es correcto");
                 c_ventana = true;
-                main_frame main = new main_frame(nombre);
+                main_frame main = new main_frame(nombre, correo_usuario);
                 main.setVisible(true);
             }
             else{
