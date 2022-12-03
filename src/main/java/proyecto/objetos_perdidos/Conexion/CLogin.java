@@ -12,12 +12,18 @@ import proyecto.objetos_perdidos.UI.main_frame;
 
 
 public class CLogin {
+    String nombre;
+    public CLogin(String n){
+        this.nombre = n;
+    }
     boolean c_ventana = false;
+    
     
     public boolean cerrar_ventana(){
         return c_ventana;
     }
 
+    
     public void validar_usuario(JTextField correo,JPasswordField contrasena){
         try{
             ResultSet rs =null;           
@@ -34,15 +40,15 @@ public class CLogin {
             ps.setString(2,contra);
             
             rs = ps.executeQuery();
-            
+            System.out.println("login2: "+nombre);
             if(rs.next()){
                 JOptionPane.showMessageDialog(null, "El usuario es correcto");
                 c_ventana = true;
-                main_frame main = new main_frame();
+                main_frame main = new main_frame(nombre);
                 main.setVisible(true);
             }
             else{
-                JOptionPane.showMessageDialog(null, "El usuario es incorrecto");
+                JOptionPane.showMessageDialog(null, "No existe ese usuario\nVerificar correo o contraseña");
 
             }
          

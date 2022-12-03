@@ -43,9 +43,6 @@ public class CRegistro {
                + str_documento
                +"','"
                + str_password+ "')");
- 
-      
-        JOptionPane.showMessageDialog(null,"usuario creado correctamente" );
         cerrar = true;
         conexion.establecer_conexion().close();
         

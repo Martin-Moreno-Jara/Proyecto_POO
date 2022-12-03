@@ -25,6 +25,9 @@ public class Usuario {
         this.contrasena = contrasena;
         this.documento = documento;
     }
+       public Usuario(String correo){
+           this.correo = correo;
+       }
         
     public String getNombre() {
         return nombre;
@@ -76,8 +79,7 @@ public class Usuario {
     
         @Override
     public String toString() {
-        return " Se ha creado correctamente el usuario: "
-                + "\n nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", numero=" + numero + ", documento=" + documento + '}';
+        return "Bienvenido " + nombre +" "+ apellido + "\nCorreo: " + correo + "\nnumero: " + numero + "\ndocumento: " + documento;
     }
    
     
