@@ -4,11 +4,20 @@
  */
 package proyecto.objetos_perdidos.UI;
 
+import com.mysql.cj.protocol.Resultset;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import proyecto.objetos_perdidos.Conexion.CConexion;
+
 public class main_frame extends javax.swing.JFrame {
     String nombre_label;
     String correo_referencia;
     public main_frame(String n, String c) {
         initComponents();
+        llenar_tabla();
         setLocationRelativeTo(null);
         lb_nombre_usuario.setText(n);
         this.correo_referencia=c;
@@ -30,7 +39,7 @@ public class main_frame extends javax.swing.JFrame {
         lb_nombre_usuario = new javax.swing.JLabel();
         btn_agg_obj = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla_objetos = new javax.swing.JTable();
 
         jLabel1.setText("Objetos perdidos UNAL");
 
@@ -80,7 +89,7 @@ public class main_frame extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_objetos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -90,8 +99,16 @@ public class main_frame extends javax.swing.JFrame {
             new String [] {
                 "Tipo", "Objeto", "Descripción", "Ubicación"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabla_objetos);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -105,13 +122,12 @@ public class main_frame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lb_nombre_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addComponent(btn_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btn_agg_obj, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,7 +178,39 @@ public class main_frame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public void llenar_tabla(){
+        DefaultTableModel tabla = new DefaultTableModel();
+        tabla.addColumn("Tipo");
+        tabla.addColumn("Objeto");
+        tabla.addColumn("Encontrado en");
+        tabla.addColumn("Descripción");
+        tabla_objetos.setModel(tabla);
+        
+        
+        CConexion con = new CConexion();
+        
+        PreparedStatement ps = null;
+        ResultSet rs =null;
+ 
+        String[] datos = new String[4];
+        try{
+            String consulta = "SELECT tipo, objeto, ubicacion, descripcion FROM objetos";
+            ps = con.establecer_conexion().prepareStatement(consulta);
+            rs = ps.executeQuery();
+                        
+            while(rs.next()){
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4);
+                tabla.addRow(datos);
+                
+            }
+            tabla_objetos.setModel(tabla);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error en: "+e.toString());
+        }
+    }
     private void btn_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logoutActionPerformed
        login_frame login = new login_frame();
        login.setVisible(true);
@@ -190,7 +238,7 @@ public class main_frame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lb_nombre_usuario;
+    private javax.swing.JTable tabla_objetos;
     // End of variables declaration//GEN-END:variables
 }
