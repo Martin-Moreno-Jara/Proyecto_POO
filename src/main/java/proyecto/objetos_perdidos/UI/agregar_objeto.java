@@ -138,6 +138,7 @@ public class agregar_objeto extends javax.swing.JDialog {
         jLabel4.setText("Descripción");
 
         txt_descripcion.setColumns(20);
+        txt_descripcion.setLineWrap(true);
         txt_descripcion.setRows(5);
         jScrollPane1.setViewportView(txt_descripcion);
 
