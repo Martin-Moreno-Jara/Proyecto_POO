@@ -20,6 +20,11 @@ public class agregar_objeto extends javax.swing.JDialog {
      * Creates new form agregar_objeto
      */
     String correo_usuario;
+    Boolean confirmacion = false;
+    
+    public Boolean getConfirmacion(){
+        return confirmacion;
+    }
     public agregar_objeto(java.awt.Frame parent, boolean modal,String c) {
         super(parent, modal);
         setLocationRelativeTo(null);
@@ -57,6 +62,10 @@ public class agregar_objeto extends javax.swing.JDialog {
             informacion[3] = "Botilito";
             informacion[4] = "Otro";
         }
+        if(dat.equalsIgnoreCase("Otro")){
+            informacion[0] ="";
+        }
+        
         
         return informacion;
     }
@@ -222,6 +231,9 @@ public class agregar_objeto extends javax.swing.JDialog {
         if(txt_ubicación.getText().equals("") && txt_descripcion.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Debe llenar todos los campos para hacer el registro");
         }
+        if(cb_tipo_objeto.getSelectedItem().toString().equalsIgnoreCase("Seleccionar")){
+            JOptionPane.showMessageDialog(null, "Debe ingresar valores válidos");
+        }
         else{
             String tipo_obj = cb_tipo_objeto.getSelectedItem().toString();
             String obj = cb_objeto.getSelectedItem().toString();
@@ -231,6 +243,7 @@ public class agregar_objeto extends javax.swing.JDialog {
             CRegistro registro_objeto = new CRegistro();
             registro_objeto.registrar_objeto(tipo_obj, obj, ubicacion, descripcion, correo_usuario);
             this.dispose();
+            confirmacion=true;
         }
     }//GEN-LAST:event_btnActionPerformed
 

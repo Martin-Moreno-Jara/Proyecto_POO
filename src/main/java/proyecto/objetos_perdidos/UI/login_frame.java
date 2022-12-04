@@ -183,7 +183,6 @@ public class login_frame extends javax.swing.JFrame {
                     
             nombre_confirmacion= nombre+" "+apellido;
             
-            System.out.println("login: "+nombre_confirmacion);
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error en: "+e.toString());
@@ -193,7 +192,6 @@ public class login_frame extends javax.swing.JFrame {
     private void btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresarActionPerformed
         String texto_correo = txt_correo_login.getText();
         CLogin login = new CLogin(buscar_nombre(),texto_correo);
-        System.out.println(texto_correo);
         login.validar_usuario(txt_correo_login, txt_pass_login);
         /*usuario_logeado.setCorreo(txt_correo_login.getText());
         try{

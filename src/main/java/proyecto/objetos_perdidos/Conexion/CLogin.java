@@ -25,7 +25,25 @@ public class CLogin {
         return c_ventana;
     }
 
-    
+    public void buscar_datos(){
+        try{
+            ResultSet rs =null;           
+            PreparedStatement ps =null;
+            
+            CConexion conexion = new CConexion();
+            
+            String consulta ="select nombre, numero from usuarios where ('"
+               + correo_usuario+ "')";
+            ps=conexion.establecer_conexion().prepareStatement(consulta);
+            
+     
+            rs = ps.executeQuery();            
+           
+        }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error: "+e.toString());
+        }
+    }
+
     public void validar_usuario(JTextField correo,JPasswordField contrasena){
         try{
             ResultSet rs =null;           

@@ -40,6 +40,9 @@ public class main_frame extends javax.swing.JFrame {
         btn_agg_obj = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_objetos = new javax.swing.JTable();
+        btn_verinfo = new javax.swing.JButton();
+        btn_editar = new javax.swing.JButton();
+        btn_eliminar = new javax.swing.JButton();
 
         jLabel1.setText("Objetos perdidos UNAL");
 
@@ -110,6 +113,27 @@ public class main_frame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla_objetos);
 
+        btn_verinfo.setText("Ver información");
+        btn_verinfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_verinfoActionPerformed(evt);
+            }
+        });
+
+        btn_editar.setText("Editar objeto");
+        btn_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editarActionPerformed(evt);
+            }
+        });
+
+        btn_eliminar.setText("Eliminar objeto");
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -124,7 +148,11 @@ public class main_frame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btn_agg_obj, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_agg_obj, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                            .addComponent(btn_verinfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1)))
                 .addContainerGap())
@@ -141,6 +169,12 @@ public class main_frame extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btn_agg_obj)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_verinfo)
+                        .addGap(28, 28, 28)
+                        .addComponent(btn_editar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_eliminar)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))
                 .addContainerGap())
@@ -184,6 +218,7 @@ public class main_frame extends javax.swing.JFrame {
         tabla.addColumn("Objeto");
         tabla.addColumn("Encontrado en");
         tabla.addColumn("Descripción");
+        tabla.addColumn("Encontrado por");
         tabla_objetos.setModel(tabla);
         
         
@@ -192,9 +227,9 @@ public class main_frame extends javax.swing.JFrame {
         PreparedStatement ps = null;
         ResultSet rs =null;
  
-        String[] datos = new String[4];
+        String[] datos = new String[5];
         try{
-            String consulta = "SELECT tipo, objeto, ubicacion, descripcion FROM objetos";
+            String consulta = "SELECT tipo, objeto, ubicacion, descripcion, encontradopor FROM objetos";
             ps = con.establecer_conexion().prepareStatement(consulta);
             rs = ps.executeQuery();
                         
@@ -203,6 +238,7 @@ public class main_frame extends javax.swing.JFrame {
                 datos[1] = rs.getString(2);
                 datos[2] = rs.getString(3);
                 datos[3] = rs.getString(4);
+                datos[4] = rs.getString(5);
                 tabla.addRow(datos);
                 
             }
@@ -220,7 +256,69 @@ public class main_frame extends javax.swing.JFrame {
     private void btn_agg_objActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agg_objActionPerformed
         agregar_objeto objeto = new agregar_objeto(this, true,correo_referencia);
         objeto.setVisible(true);
+        if(objeto.getConfirmacion()){
+            llenar_tabla();
+        }
     }//GEN-LAST:event_btn_agg_objActionPerformed
+
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
+        int row = tabla_objetos.getSelectedRow();
+        if(row<0){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un registro para hacer la acción");
+        }
+        else{
+            if(!correo_referencia.equalsIgnoreCase(tabla_objetos.getValueAt(row, 4).toString())){
+                JOptionPane.showMessageDialog(null, "No puedes eliminar un registro creado por otro usuario");
+            }
+        }
+    }//GEN-LAST:event_btn_eliminarActionPerformed
+
+    private void btn_verinfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_verinfoActionPerformed
+        int row = tabla_objetos.getSelectedRow();
+        String name_eu ="";
+        String cel_eu ="";
+        if(row<0){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un registro para hacer la acción");
+        }else{
+            
+            try{
+            ResultSet rs =null;           
+            PreparedStatement ps =null;
+            
+            CConexion conexion = new CConexion();
+            
+            String consulta ="select nombre, numero from usuarios where usuarios.correo = '"
+               + tabla_objetos.getValueAt(row, 4).toString()+ "'";
+            
+            //String consulta ="select nombre, numero from usuarios where ";
+            ps=conexion.establecer_conexion().prepareStatement(consulta);
+            
+     
+            rs = ps.executeQuery();
+            rs.next();
+            name_eu = rs.getString("nombre");
+            cel_eu = rs.getString("numero");
+           
+        }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error: "+e.toString());
+        }
+            Informacion info = new Informacion(this,true);
+            info.llenar_info(tabla_objetos.getValueAt(row, 0).toString(),tabla_objetos.getValueAt(row, 1).toString(),tabla_objetos.getValueAt(row, 2).toString(),tabla_objetos.getValueAt(row, 3).toString(),name_eu,cel_eu,tabla_objetos.getValueAt(row, 4).toString());
+            info.setVisible(true);
+        }
+    }//GEN-LAST:event_btn_verinfoActionPerformed
+
+    private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
+        int row = tabla_objetos.getSelectedRow();
+        if(row<0){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un registro para hacer la acción");
+        }else{
+            if(!correo_referencia.equalsIgnoreCase(tabla_objetos.getValueAt(row, 4).toString())){
+                JOptionPane.showMessageDialog(null, "No puedes editar un registro creado por otro usuario");
+            }
+        }
+        
+    }//GEN-LAST:event_btn_editarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,7 +326,10 @@ public class main_frame extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_agg_obj;
+    private javax.swing.JButton btn_editar;
+    private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_logout;
+    private javax.swing.JButton btn_verinfo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
