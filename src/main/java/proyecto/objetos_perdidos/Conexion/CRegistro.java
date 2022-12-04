@@ -73,7 +73,7 @@ public class CRegistro {
         
         }
         catch(Exception e ){
-            JOptionPane.showMessageDialog(null,"No se ha podido crear usuario : "+e.toString() );
+            JOptionPane.showMessageDialog(null,"No se ha podido hacer el registro : "+e.toString() );
         }
     }
 }

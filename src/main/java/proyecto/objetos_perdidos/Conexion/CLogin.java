@@ -40,7 +40,7 @@ public class CLogin {
             rs = ps.executeQuery();            
            
         }catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Error: "+e.toString());
+                JOptionPane.showMessageDialog(null, "Error6: "+e.toString());
         }
     }
 
@@ -62,7 +62,6 @@ public class CLogin {
             rs = ps.executeQuery();
             System.out.println("login2: "+nombre);
             if(rs.next()){
-                JOptionPane.showMessageDialog(null, "El usuario es correcto");
                 c_ventana = true;
                 main_frame main = new main_frame(nombre, correo_usuario);
                 main.setVisible(true);
@@ -74,7 +73,7 @@ public class CLogin {
          
            
         }catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Error: "+e.toString());
+                JOptionPane.showMessageDialog(null, "Error5: "+e.toString());
         }
         
     }

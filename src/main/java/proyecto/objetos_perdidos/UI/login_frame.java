@@ -185,7 +185,7 @@ public class login_frame extends javax.swing.JFrame {
             
             
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error en: "+e.toString());
+            System.out.println(e.toString());
         }
         return nombre_confirmacion;
 }

@@ -214,6 +214,7 @@ public class main_frame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     public void llenar_tabla(){
         DefaultTableModel tabla = new DefaultTableModel();
+        tabla.addColumn("ID");
         tabla.addColumn("Tipo");
         tabla.addColumn("Objeto");
         tabla.addColumn("Encontrado en");
@@ -227,9 +228,9 @@ public class main_frame extends javax.swing.JFrame {
         PreparedStatement ps = null;
         ResultSet rs =null;
  
-        String[] datos = new String[5];
+        String[] datos = new String[6];
         try{
-            String consulta = "SELECT tipo, objeto, ubicacion, descripcion, encontradopor FROM objetos";
+            String consulta = "SELECT ID, tipo, objeto, ubicacion, descripcion, encontradopor FROM objetos";
             ps = con.establecer_conexion().prepareStatement(consulta);
             rs = ps.executeQuery();
                         
@@ -239,12 +240,13 @@ public class main_frame extends javax.swing.JFrame {
                 datos[2] = rs.getString(3);
                 datos[3] = rs.getString(4);
                 datos[4] = rs.getString(5);
+                datos[5] = rs.getString(6);
                 tabla.addRow(datos);
                 
             }
             tabla_objetos.setModel(tabla);
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error en: "+e.toString());
+            JOptionPane.showMessageDialog(null, "Error en1: "+e.toString());
         }
     }
     private void btn_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logoutActionPerformed
@@ -254,21 +256,47 @@ public class main_frame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_logoutActionPerformed
 
     private void btn_agg_objActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agg_objActionPerformed
-        agregar_objeto objeto = new agregar_objeto(this, true,correo_referencia);
+        agregar_objeto objeto = new agregar_objeto(this, true,correo_referencia,false);
         objeto.setVisible(true);
         if(objeto.getConfirmacion()){
             llenar_tabla();
         }
     }//GEN-LAST:event_btn_agg_objActionPerformed
+public void eliminar_datos(){
+    try{
+        int row = tabla_objetos.getSelectedRow();
+        CConexion con = new CConexion();
 
+        String consulta = "delete from objetos where ID="+tabla_objetos.getValueAt(row, 0);
+        
+        Statement st = con.establecer_conexion().createStatement();
+        int n= st.executeUpdate(consulta);
+        if(n>0){
+            JOptionPane.showMessageDialog(null, "Se eliminó correctamente el registro");
+                    
+        }
+        
+    }catch(Exception e){
+        JOptionPane.showMessageDialog(null, "Error en2: "+e.toString());
+    }
+}
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
         int row = tabla_objetos.getSelectedRow();
         if(row<0){
             JOptionPane.showMessageDialog(null, "Debe seleccionar un registro para hacer la acción");
         }
         else{
-            if(!correo_referencia.equalsIgnoreCase(tabla_objetos.getValueAt(row, 4).toString())){
+            if(!correo_referencia.equalsIgnoreCase(tabla_objetos.getValueAt(row, 5).toString())){
                 JOptionPane.showMessageDialog(null, "No puedes eliminar un registro creado por otro usuario");
+            }
+            else{
+                Confirmacion confi = new Confirmacion(this, true);
+                confi.setVisible(true);
+                if(confi.getConfirmacion()){
+                    eliminar_datos();
+                    llenar_tabla();
+                }
+                
             }
         }
     }//GEN-LAST:event_btn_eliminarActionPerformed
@@ -287,8 +315,8 @@ public class main_frame extends javax.swing.JFrame {
             
             CConexion conexion = new CConexion();
             
-            String consulta ="select nombre, numero from usuarios where usuarios.correo = '"
-               + tabla_objetos.getValueAt(row, 4).toString()+ "'";
+            String consulta ="select nombre, numero, apellido from usuarios where usuarios.correo = '"
+               + tabla_objetos.getValueAt(row, 5).toString()+ "'";
             
             //String consulta ="select nombre, numero from usuarios where ";
             ps=conexion.establecer_conexion().prepareStatement(consulta);
@@ -296,14 +324,14 @@ public class main_frame extends javax.swing.JFrame {
      
             rs = ps.executeQuery();
             rs.next();
-            name_eu = rs.getString("nombre");
+            name_eu = rs.getString("nombre")+" "+rs.getString("apellido");
             cel_eu = rs.getString("numero");
            
         }catch(Exception e){
                 JOptionPane.showMessageDialog(null, "Error: "+e.toString());
         }
             Informacion info = new Informacion(this,true);
-            info.llenar_info(tabla_objetos.getValueAt(row, 0).toString(),tabla_objetos.getValueAt(row, 1).toString(),tabla_objetos.getValueAt(row, 2).toString(),tabla_objetos.getValueAt(row, 3).toString(),name_eu,cel_eu,tabla_objetos.getValueAt(row, 4).toString());
+            info.llenar_info(tabla_objetos.getValueAt(row, 1).toString(),tabla_objetos.getValueAt(row,2).toString(),tabla_objetos.getValueAt(row, 3).toString(),tabla_objetos.getValueAt(row, 4).toString(),name_eu,cel_eu,tabla_objetos.getValueAt(row, 5).toString());
             info.setVisible(true);
         }
     }//GEN-LAST:event_btn_verinfoActionPerformed
@@ -313,8 +341,17 @@ public class main_frame extends javax.swing.JFrame {
         if(row<0){
             JOptionPane.showMessageDialog(null, "Debe seleccionar un registro para hacer la acción");
         }else{
-            if(!correo_referencia.equalsIgnoreCase(tabla_objetos.getValueAt(row, 4).toString())){
+            if(!correo_referencia.equalsIgnoreCase(tabla_objetos.getValueAt(row, 5).toString())){
                 JOptionPane.showMessageDialog(null, "No puedes editar un registro creado por otro usuario");
+            }
+            else{
+                agregar_objeto obj = new agregar_objeto(this, true, nombre_label,true);
+                String tipo = tabla_objetos.getValueAt(row, 1).toString();
+                String objeto = tabla_objetos.getValueAt(row, 2).toString();
+                String ubicacion = tabla_objetos.getValueAt(row, 3).toString();
+                String descrip = tabla_objetos.getValueAt(row, 4).toString();
+                obj.llenar_editar(tipo,objeto,ubicacion,descrip);
+                obj.setVisible(true);
             }
         }
         
