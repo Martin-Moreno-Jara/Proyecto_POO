@@ -76,4 +76,15 @@ public class CRegistro {
             JOptionPane.showMessageDialog(null,"No se ha podido hacer el registro : "+e.toString() );
         }
     }
+    public void Editar_objeto(String tipo, String obj, String ubicacion, String descripcion, int ID){
+        CConexion con = new CConexion();
+        try{
+            String consulta = "UPDATE objetos SET tipo='"+tipo+"', objeto='"+obj+"', ubicacion='"+ubicacion+"', descripcion='"+descripcion+"' WHERE ID="+ID;
+            Statement st = con.establecer_conexion().createStatement();
+           st.executeUpdate(consulta);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
+        
+    }
 }

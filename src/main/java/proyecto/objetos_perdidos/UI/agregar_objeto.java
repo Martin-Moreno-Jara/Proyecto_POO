@@ -21,6 +21,7 @@ public class agregar_objeto extends javax.swing.JDialog {
      */
     String correo_usuario;
     Boolean confirmacion = false;
+    int ID = 0;
     
     public Boolean getConfirmacion(){
         return confirmacion;
@@ -33,20 +34,21 @@ public class agregar_objeto extends javax.swing.JDialog {
         if(b==true){
             System.out.println(b);
             btn_editar.setEnabled(true);
-            btn.setEnabled(false);
+            btn_guardar.setEnabled(false);
         }
         if(b==false){
             System.out.println(b);
             btn_editar.setEnabled(false);
-            btn.setEnabled(true);
+            btn_guardar.setEnabled(true);
         }
     }
     
-    public void llenar_editar(String tipo, String obj, String ubicacion, String descripcion){
+    public void llenar_editar(String tipo, String obj, String ubicacion, String descripcion,int id){
         cb_tipo_objeto.setSelectedItem(tipo);
         cb_objeto.setSelectedItem(obj);
         txt_ubicación.setText(ubicacion);
         txt_descripcion.setText(descripcion);
+        ID=id;
     }
     public String[] datos(String dat){
         String[] informacion = new String[5];
@@ -105,7 +107,7 @@ public class agregar_objeto extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txt_descripcion = new javax.swing.JTextArea();
-        btn = new javax.swing.JButton();
+        btn_guardar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txt_ubicación = new javax.swing.JTextField();
@@ -139,10 +141,10 @@ public class agregar_objeto extends javax.swing.JDialog {
         txt_descripcion.setRows(5);
         jScrollPane1.setViewportView(txt_descripcion);
 
-        btn.setText("Guardar");
-        btn.addActionListener(new java.awt.event.ActionListener() {
+        btn_guardar.setText("Guardar");
+        btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                btn_guardarActionPerformed(evt);
             }
         });
 
@@ -162,6 +164,11 @@ public class agregar_objeto extends javax.swing.JDialog {
         });
 
         btn_editar.setText("Editar");
+        btn_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -191,7 +198,7 @@ public class agregar_objeto extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn)
+                                .addComponent(btn_guardar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btn_editar)
                                 .addGap(12, 12, 12)
@@ -222,7 +229,7 @@ public class agregar_objeto extends javax.swing.JDialog {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn)
+                    .addComponent(btn_guardar)
                     .addComponent(btn_cancelar)
                     .addComponent(btn_editar))
                 .addContainerGap())
@@ -251,7 +258,7 @@ public class agregar_objeto extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_cb_tipo_objetoItemStateChanged
 
-    private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
+    private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
         if(txt_ubicación.getText().equals("") && txt_descripcion.getText().equals("") && cb_tipo_objeto.getSelectedItem().toString().equalsIgnoreCase("Otro") ){
             JOptionPane.showMessageDialog(null,"Debe llenar todos los campos para hacer el registro");
         }
@@ -269,7 +276,22 @@ public class agregar_objeto extends javax.swing.JDialog {
             this.dispose();
             confirmacion=true;
         }
-    }//GEN-LAST:event_btnActionPerformed
+    }//GEN-LAST:event_btn_guardarActionPerformed
+
+    private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
+        if(txt_ubicación.getText().equals("") && txt_descripcion.getText().equals("") && cb_tipo_objeto.getSelectedItem().toString().equalsIgnoreCase("Otro") ){
+            JOptionPane.showMessageDialog(null,"Debe llenar todos los campos para hacer el registro");
+        }
+        if(cb_tipo_objeto.getSelectedItem().toString().equalsIgnoreCase("Seleccionar")){
+            JOptionPane.showMessageDialog(null, "Debe ingresar valores válidos");
+        }
+        else{
+            CRegistro actualizacion = new CRegistro();
+            actualizacion.Editar_objeto(cb_tipo_objeto.getSelectedItem().toString(),cb_objeto.getSelectedItem().toString(),txt_ubicación.getText(),txt_descripcion.getText(),ID);
+            confirmacion=true;
+            this.dispose();
+        }
+    }//GEN-LAST:event_btn_editarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -315,9 +337,9 @@ public class agregar_objeto extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn;
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_editar;
+    private javax.swing.JButton btn_guardar;
     private javax.swing.JComboBox<String> cb_objeto;
     private javax.swing.JComboBox<String> cb_tipo_objeto;
     private javax.swing.JLabel jLabel1;

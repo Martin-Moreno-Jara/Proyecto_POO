@@ -4,7 +4,6 @@
  */
 package proyecto.objetos_perdidos.UI;
 
-import com.mysql.cj.protocol.Resultset;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -350,8 +349,14 @@ public void eliminar_datos(){
                 String objeto = tabla_objetos.getValueAt(row, 2).toString();
                 String ubicacion = tabla_objetos.getValueAt(row, 3).toString();
                 String descrip = tabla_objetos.getValueAt(row, 4).toString();
-                obj.llenar_editar(tipo,objeto,ubicacion,descrip);
+                String identification = tabla_objetos.getValueAt(row, 0).toString();
+                int idf = Integer.parseInt(identification);
+                
+                obj.llenar_editar(tipo,objeto,ubicacion,descrip,idf);
                 obj.setVisible(true);
+                if(obj.getConfirmacion()){
+                    llenar_tabla();
+                }
             }
         }
         
