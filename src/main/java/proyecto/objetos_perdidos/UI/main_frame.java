@@ -119,7 +119,7 @@ public class main_frame extends javax.swing.JFrame {
             }
         });
 
-        tabla_objetos.setBackground(new java.awt.Color(255, 255, 0));
+        tabla_objetos.setBackground(new java.awt.Color(204, 204, 204));
         tabla_objetos.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         tabla_objetos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,7 +140,7 @@ public class main_frame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabla_objetos.setGridColor(new java.awt.Color(255, 255, 102));
+        tabla_objetos.setGridColor(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tabla_objetos);
 
         btn_verinfo.setBackground(new java.awt.Color(118, 35, 47));
