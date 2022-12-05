@@ -44,6 +44,14 @@ public class Confirmacion extends javax.swing.JDialog {
         btn_eliminar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btn_eliminar.setForeground(new java.awt.Color(255, 255, 255));
         btn_eliminar.setText("Eliminar");
+        btn_eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_eliminarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_eliminarMouseExited(evt);
+            }
+        });
         btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_eliminarActionPerformed(evt);
@@ -54,6 +62,14 @@ public class Confirmacion extends javax.swing.JDialog {
         jButton1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Cancelar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -99,6 +115,30 @@ public class Confirmacion extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        // TODO add your handling code here:
+        jButton1.setBackground(Color.white);
+        jButton1.setForeground(Color.black);
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void btn_eliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_eliminarMouseEntered
+        // TODO add your handling code here:
+        btn_eliminar.setBackground(Color.white);
+        btn_eliminar.setForeground(Color.black);
+    }//GEN-LAST:event_btn_eliminarMouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        // TODO add your handling code here:
+        jButton1.setBackground(new Color(118,35,47));
+        jButton1.setForeground(Color.white);
+    }//GEN-LAST:event_jButton1MouseExited
+
+    private void btn_eliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_eliminarMouseExited
+        // TODO add your handling code here:
+        btn_eliminar.setBackground(new Color(118,35,47));
+        btn_eliminar.setForeground(Color.white);
+    }//GEN-LAST:event_btn_eliminarMouseExited
 
     /**
      * @param args the command line arguments

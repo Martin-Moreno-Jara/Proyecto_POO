@@ -126,6 +126,14 @@ public class agregar_objeto extends javax.swing.JDialog {
         btn_guardar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btn_guardar.setForeground(new java.awt.Color(255, 255, 255));
         btn_guardar.setText("Registrar");
+        btn_guardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_guardarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_guardarMouseExited(evt);
+            }
+        });
         btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_guardarActionPerformed(evt);
@@ -136,6 +144,14 @@ public class agregar_objeto extends javax.swing.JDialog {
         btn_cancelar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btn_cancelar.setForeground(new java.awt.Color(255, 255, 255));
         btn_cancelar.setText("Cancelar");
+        btn_cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_cancelarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_cancelarMouseExited(evt);
+            }
+        });
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancelarActionPerformed(evt);
@@ -146,6 +162,14 @@ public class agregar_objeto extends javax.swing.JDialog {
         btn_editar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btn_editar.setForeground(new java.awt.Color(255, 255, 255));
         btn_editar.setText("Guardar cambios");
+        btn_editar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_editarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_editarMouseExited(evt);
+            }
+        });
         btn_editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editarActionPerformed(evt);
@@ -333,6 +357,42 @@ public class agregar_objeto extends javax.swing.JDialog {
             this.dispose();
         }
     }//GEN-LAST:event_btn_editarActionPerformed
+
+    private void btn_guardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_guardarMouseEntered
+        // TODO add your handling code here:
+        btn_guardar.setBackground(Color.white);
+        btn_guardar.setForeground(Color.black);
+    }//GEN-LAST:event_btn_guardarMouseEntered
+
+    private void btn_guardarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_guardarMouseExited
+        // TODO add your handling code here:
+        btn_guardar.setBackground(new Color(118,35,47));
+        btn_guardar.setForeground(Color.white);
+    }//GEN-LAST:event_btn_guardarMouseExited
+
+    private void btn_editarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_editarMouseEntered
+        // TODO add your handling code here:
+        btn_editar.setBackground(Color.white);
+        btn_editar.setForeground(Color.black);
+    }//GEN-LAST:event_btn_editarMouseEntered
+
+    private void btn_editarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_editarMouseExited
+        // TODO add your handling code here:
+        btn_editar.setBackground(new Color(118,35,47));
+        btn_editar.setForeground(Color.white);
+    }//GEN-LAST:event_btn_editarMouseExited
+
+    private void btn_cancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cancelarMouseEntered
+        // TODO add your handling code here:
+        btn_cancelar.setBackground(Color.white);
+        btn_cancelar.setForeground(Color.black);
+    }//GEN-LAST:event_btn_cancelarMouseEntered
+
+    private void btn_cancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cancelarMouseExited
+        // TODO add your handling code here:
+        btn_cancelar.setBackground(new Color(118,35,47));
+        btn_cancelar.setForeground(Color.white);
+    }//GEN-LAST:event_btn_cancelarMouseExited
 
     /**
      * @param args the command line arguments

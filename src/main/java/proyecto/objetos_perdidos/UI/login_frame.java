@@ -4,6 +4,7 @@
  */
 package proyecto.objetos_perdidos.UI;
 
+import java.awt.Color;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
@@ -90,6 +91,14 @@ public class login_frame extends javax.swing.JFrame {
                 btn_ingresarFocusGained(evt);
             }
         });
+        btn_ingresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_ingresarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_ingresarMouseExited(evt);
+            }
+        });
         btn_ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ingresarActionPerformed(evt);
@@ -99,6 +108,14 @@ public class login_frame extends javax.swing.JFrame {
         btn_crear_usuario.setBackground(new java.awt.Color(118, 35, 47));
         btn_crear_usuario.setForeground(new java.awt.Color(255, 255, 255));
         btn_crear_usuario.setText("Crear usuario");
+        btn_crear_usuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_crear_usuarioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_crear_usuarioMouseExited(evt);
+            }
+        });
         btn_crear_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_crear_usuarioActionPerformed(evt);
@@ -260,6 +277,30 @@ public class login_frame extends javax.swing.JFrame {
     private void btn_ingresarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btn_ingresarFocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_ingresarFocusGained
+
+    private void btn_ingresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ingresarMouseEntered
+        // TODO add your handling code here:
+        btn_ingresar.setBackground(Color.white);
+        btn_ingresar.setForeground(Color.black);
+    }//GEN-LAST:event_btn_ingresarMouseEntered
+
+    private void btn_ingresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ingresarMouseExited
+        // TODO add your handling code here:
+        btn_ingresar.setBackground(new Color(118,35,47));
+        btn_ingresar.setForeground(Color.white);
+    }//GEN-LAST:event_btn_ingresarMouseExited
+
+    private void btn_crear_usuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_crear_usuarioMouseEntered
+        // TODO add your handling code here:
+        btn_crear_usuario.setBackground(Color.white);
+        btn_crear_usuario.setForeground(Color.black);
+    }//GEN-LAST:event_btn_crear_usuarioMouseEntered
+
+    private void btn_crear_usuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_crear_usuarioMouseExited
+        // TODO add your handling code here:
+        btn_crear_usuario.setBackground(new Color(118,35,47));
+        btn_crear_usuario.setForeground(Color.white);
+    }//GEN-LAST:event_btn_crear_usuarioMouseExited
 
     /**
      * @param args the command line arguments

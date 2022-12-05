@@ -4,6 +4,7 @@
  */
 package proyecto.objetos_perdidos.UI;
 
+import java.awt.Color;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -83,6 +84,14 @@ public class main_frame extends javax.swing.JFrame {
         btn_logout.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btn_logout.setForeground(new java.awt.Color(255, 255, 255));
         btn_logout.setText("Cerrar sesión");
+        btn_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_logoutMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_logoutMouseExited(evt);
+            }
+        });
         btn_logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_logoutActionPerformed(evt);
@@ -96,6 +105,14 @@ public class main_frame extends javax.swing.JFrame {
         btn_agg_obj.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btn_agg_obj.setForeground(new java.awt.Color(255, 255, 255));
         btn_agg_obj.setText("Agregar objeto perdido");
+        btn_agg_obj.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_agg_objMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_agg_objMouseExited(evt);
+            }
+        });
         btn_agg_obj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_agg_objActionPerformed(evt);
@@ -130,6 +147,14 @@ public class main_frame extends javax.swing.JFrame {
         btn_verinfo.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btn_verinfo.setForeground(new java.awt.Color(255, 255, 255));
         btn_verinfo.setText("Ver información");
+        btn_verinfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_verinfoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_verinfoMouseExited(evt);
+            }
+        });
         btn_verinfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_verinfoActionPerformed(evt);
@@ -140,6 +165,14 @@ public class main_frame extends javax.swing.JFrame {
         btn_editar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btn_editar.setForeground(new java.awt.Color(255, 255, 255));
         btn_editar.setText("Editar objeto");
+        btn_editar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_editarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_editarMouseExited(evt);
+            }
+        });
         btn_editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editarActionPerformed(evt);
@@ -150,6 +183,14 @@ public class main_frame extends javax.swing.JFrame {
         btn_eliminar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btn_eliminar.setForeground(new java.awt.Color(255, 255, 255));
         btn_eliminar.setText("Eliminar objeto");
+        btn_eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_eliminarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_eliminarMouseExited(evt);
+            }
+        });
         btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_eliminarActionPerformed(evt);
@@ -386,6 +427,66 @@ public void eliminar_datos(){
         }
         
     }//GEN-LAST:event_btn_editarActionPerformed
+
+    private void btn_logoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_logoutMouseEntered
+        // TODO add your handling code here:
+        btn_logout.setBackground(Color.white);
+        btn_logout.setForeground(Color.black);
+    }//GEN-LAST:event_btn_logoutMouseEntered
+
+    private void btn_logoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_logoutMouseExited
+        // TODO add your handling code here:
+        btn_logout.setBackground(new Color(118,35,47));
+        btn_logout.setForeground(Color.white);
+    }//GEN-LAST:event_btn_logoutMouseExited
+
+    private void btn_agg_objMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_agg_objMouseEntered
+        // TODO add your handling code here:btn_logout.setBackground(Color.white);
+        btn_agg_obj.setBackground(Color.white);
+        btn_agg_obj.setForeground(Color.black);
+    }//GEN-LAST:event_btn_agg_objMouseEntered
+
+    private void btn_agg_objMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_agg_objMouseExited
+        // TODO add your handling code here:
+        btn_agg_obj.setBackground(new Color(118,35,47));
+        btn_agg_obj.setForeground(Color.white);
+    }//GEN-LAST:event_btn_agg_objMouseExited
+
+    private void btn_verinfoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verinfoMouseEntered
+        // TODO add your handling code here:
+        btn_verinfo.setBackground(Color.white);
+        btn_verinfo.setForeground(Color.black);
+    }//GEN-LAST:event_btn_verinfoMouseEntered
+
+    private void btn_verinfoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verinfoMouseExited
+        // TODO add your handling code here:
+        btn_verinfo.setBackground(new Color(118,35,47));
+        btn_verinfo.setForeground(Color.white);
+    }//GEN-LAST:event_btn_verinfoMouseExited
+
+    private void btn_editarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_editarMouseEntered
+        // TODO add your handling code here:
+        btn_editar.setBackground(Color.white);
+        btn_editar.setForeground(Color.black);
+    }//GEN-LAST:event_btn_editarMouseEntered
+
+    private void btn_editarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_editarMouseExited
+        // TODO add your handling code here:
+        btn_editar.setBackground(new Color(118,35,47));
+        btn_editar.setForeground(Color.white);
+    }//GEN-LAST:event_btn_editarMouseExited
+
+    private void btn_eliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_eliminarMouseEntered
+        // TODO add your handling code here:
+        btn_eliminar.setBackground(Color.white);
+        btn_eliminar.setForeground(Color.black);
+    }//GEN-LAST:event_btn_eliminarMouseEntered
+
+    private void btn_eliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_eliminarMouseExited
+        // TODO add your handling code here:
+        btn_eliminar.setBackground(new Color(118,35,47));
+        btn_eliminar.setForeground(Color.white);
+    }//GEN-LAST:event_btn_eliminarMouseExited
 
     /**
      * @param args the command line arguments

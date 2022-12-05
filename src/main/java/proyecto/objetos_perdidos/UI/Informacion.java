@@ -215,6 +215,14 @@ public class Informacion extends javax.swing.JDialog {
         jButton1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Aceptar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -278,6 +286,18 @@ public class Informacion extends javax.swing.JDialog {
     private void txt_info_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_info_tipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_info_tipoActionPerformed
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        // TODO add your handling code here:
+        jButton1.setBackground(Color.white);
+        jButton1.setForeground(Color.black);
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        // TODO add your handling code here:
+        jButton1.setBackground(new Color(118,35,47));
+        jButton1.setForeground(Color.white);
+    }//GEN-LAST:event_jButton1MouseExited
 
     /**
      * @param args the command line arguments

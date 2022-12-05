@@ -4,6 +4,7 @@
  */
 package proyecto.objetos_perdidos.UI;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import proyecto.objetos_perdidos.Conexion.CRegistro;
 import proyecto.objetos_perdidos.Data.Usuario;
@@ -86,6 +87,14 @@ public class register_frame extends javax.swing.JFrame {
         btn_registrar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btn_registrar.setForeground(new java.awt.Color(255, 255, 255));
         btn_registrar.setText("Registrar");
+        btn_registrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_registrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_registrarMouseExited(evt);
+            }
+        });
         btn_registrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_registrarActionPerformed(evt);
@@ -96,6 +105,14 @@ public class register_frame extends javax.swing.JFrame {
         btn_cancelar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btn_cancelar.setForeground(new java.awt.Color(255, 255, 255));
         btn_cancelar.setText("Cancelar");
+        btn_cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_cancelarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_cancelarMouseExited(evt);
+            }
+        });
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancelarActionPerformed(evt);
@@ -313,6 +330,30 @@ public class register_frame extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txt_documentoKeyTyped
+
+    private void btn_cancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cancelarMouseEntered
+        // TODO add your handling code here:
+        btn_cancelar.setBackground(Color.white);
+        btn_cancelar.setForeground(Color.black);
+    }//GEN-LAST:event_btn_cancelarMouseEntered
+
+    private void btn_cancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cancelarMouseExited
+        // TODO add your handling code here:
+        btn_cancelar.setBackground(new Color(118,35,47));
+        btn_cancelar.setForeground(Color.white);
+    }//GEN-LAST:event_btn_cancelarMouseExited
+
+    private void btn_registrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_registrarMouseEntered
+        // TODO add your handling code here:
+        btn_registrar.setBackground(Color.white);
+        btn_registrar.setForeground(Color.black);
+    }//GEN-LAST:event_btn_registrarMouseEntered
+
+    private void btn_registrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_registrarMouseExited
+        // TODO add your handling code here:
+        btn_registrar.setBackground(new Color(118,35,47));
+        btn_registrar.setForeground(Color.white);
+    }//GEN-LAST:event_btn_registrarMouseExited
 
     /**
      * @param args the command line arguments
