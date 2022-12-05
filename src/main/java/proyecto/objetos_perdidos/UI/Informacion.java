@@ -96,6 +96,7 @@ public class Informacion extends javax.swing.JDialog {
         txt_info_des.setBackground(new java.awt.Color(255, 255, 255));
         txt_info_des.setColumns(20);
         txt_info_des.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txt_info_des.setLineWrap(true);
         txt_info_des.setRows(5);
         jScrollPane1.setViewportView(txt_info_des);
 
